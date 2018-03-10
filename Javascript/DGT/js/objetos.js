@@ -11,7 +11,7 @@ Persona.prototype.toHTMLRow = function(){
 
 	var sHTMLRow = "";
 	
-	sHTMLRow = "<tr><td>" + this.nif + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.direccion + "</td></tr>";
+	sHTMLRow = "<tbody><tr><td>" + this.nif + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.direccion + "</td></tr></tbody>";
 	
 	return sHTMLRow;
 }
@@ -31,7 +31,7 @@ Conductor.prototype.toHTMLRow = function(){
 
 	var sHTMLRow = "";
 	
-	sHTMLRow = "<tr><td>" + this.nif + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.direccion + "</td><td>" + this.fechaCadu.toLocaleDateString('es-ES') + "</td></tr>";
+	sHTMLRow = "<tbody><tr><td>" + this.nif + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.direccion + "</td><td>" + this.fechaCadu.toLocaleDateString('es-ES') + "</td></tr></tbody>";
 	
 	return sHTMLRow;
 }
@@ -52,7 +52,7 @@ Guardia.prototype.toHTMLRow = function(){
 
 	var sHTMLRow = "";
 	
-	sHTMLRow = "<tr><td>" + this.nif + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.direccion + "</td><td>" + this.rango + "</td></tr>";
+	sHTMLRow = "<tbody><tr><td>" + this.nif + "</td><td>" + this.nombre + "</td><td>" + this.apellidos + "</td><td>" + this.direccion + "</td><td>" + this.rango + "</td></tr></tbody>";
 	
 	return sHTMLRow;
 }
@@ -75,7 +75,7 @@ Multa.prototype.toHTMLRow = function(){
 
 	var sHTMLRow = "";
 	
-	sHTMLRow = "<tr><td>" + this.id + "</td><td>" + this.conductor.nif + "</td><td>" + this.guardia.nif + "</td><td>" + this.importeMulta + "</td><td>" + this.pagada + "</td><td>" + this.descripcionMulta + "</td><td>" + this.fechaMulta.toLocaleDateString('es-ES') +"</td></tr>";
+	sHTMLRow = "<tbody><tr><td>" + this.id + "</td><td>" + this.conductor.nif + "</td><td>" + this.guardia.nif + "</td><td>" + this.importeMulta + "</td><td>" + this.pagada + "</td><td>" + this.descripcionMulta + "</td><td>" + this.fechaMulta.toLocaleDateString('es-ES') +"</td></tr></tbody>";
 	
 	return sHTMLRow;
 }
@@ -93,7 +93,7 @@ Leve.prototype.toHTMLRow = function(){
 
 	var sHTMLRow = "";
 	
-	sHTMLRow = "<tr><td>" + this.id + "</td><td>" + this.conductor.nif + "</td><td>" + this.guardia.nif + "</td><td>" + this.importeMulta + "</td><td>" + this.pagada + "</td><td>" + this.descripcionMulta + "</td><td>" + this.fechaMulta.toLocaleDateString('es-ES') +"</td><td>" + this.bonificada +"</td></tr>";
+	sHTMLRow = "<tbody><tr><td>" + this.id + "</td><td>" + this.conductor.nif + "</td><td>" + this.guardia.nif + "</td><td>" + this.importeMulta + "</td><td>" + this.pagada + "</td><td>" + this.descripcionMulta + "</td><td>" + this.fechaMulta.toLocaleDateString('es-ES') +"</td><td>" + this.bonificada +"</td></tr></tbody>";
 	
 	return sHTMLRow;
 }
@@ -112,7 +112,7 @@ Grave.prototype.toHTMLRow = function(){
 
 	var sHTMLRow = "";
 	
-	sHTMLRow = "<tr><td>" + this.id + "</td><td>" + this.conductor.nif + "</td><td>" +  this.guardia.nif + "</td><td>" + this.importeMulta + "</td><td>" + this.pagada + "</td><td>" + this.descripcionMulta + "</td><td>" + this.fechaMulta.toLocaleDateString('es-ES') +"</td><td>" + this.retiradaPuntos +"</td></tr>";
+	sHTMLRow = "<tbody><tr><td>" + this.id + "</td><td>" + this.conductor.nif + "</td><td>" +  this.guardia.nif + "</td><td>" + this.importeMulta + "</td><td>" + this.pagada + "</td><td>" + this.descripcionMulta + "</td><td>" + this.fechaMulta.toLocaleDateString('es-ES') +"</td><td>" + this.retiradaPuntos +"</td></tr></tbody>";
 	
 	return sHTMLRow;
 }
@@ -289,9 +289,9 @@ class DGT{
 
 		var sHTMLTable = "<h3>Listado de conductores</h3>";
 
-		sHTMLTable += '<table border="1">';
+		sHTMLTable += '<div class="container"><table class="table table-striped">';
 		
-		sHTMLTable += "<tr><th>NIF</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>Caducidad carnet</th></tr>";
+		sHTMLTable += "<thead><tr><th>NIF</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>Caducidad carnet</th></tr></thead>";
 		
 		for (var i in this._personas){
 		
@@ -299,7 +299,7 @@ class DGT{
 				sHTMLTable += this._personas[i].toHTMLRow();
 		}
 		
-		sHTMLTable += "</table>";
+		sHTMLTable += "</table></div>";
 		
 		return sHTMLTable;
 
@@ -309,9 +309,9 @@ class DGT{
 	listadoGuardia(){
 
 		var sHTMLTable = "<h3>Listado de guardias</h3>"; 
-		sHTMLTable += '<table border="1">';
+		sHTMLTable += '<div class="container"><table class="table table-striped">';
 		
-		sHTMLTable += "<tr><th>NIF</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>Rango</th></tr>";
+		sHTMLTable += "<thead><tr><th>NIF</th><th>Nombre</th><th>Apellidos</th><th>Direccion</th><th>Rango</th></tr></thead>";
 		
 		for (var i in this._personas){
 		
@@ -319,7 +319,7 @@ class DGT{
 				sHTMLTable += this._personas[i].toHTMLRow();
 		}
 		
-		sHTMLTable += "</table>";
+		sHTMLTable += "</table></div>";
 		
 		return sHTMLTable;
 
@@ -334,8 +334,8 @@ class DGT{
 		var contador=0;
 
 		cad+= "<h3>Multas impuestas por guardia</h3>";
-		cad+= "<table border=1>";
-		cad+= "<tr><th>NIF</th><th>Nombre</th><th>Apellidos</th><th>Puesto</th><th>Multas</th><th>Importe</th></tr>";
+		cad+= "<div class=\"container\"><table class=\"table table-striped\">";
+		cad+= "<thead><tr><th>NIF</th><th>Nombre</th><th>Apellidos</th><th>Puesto</th><th>Multas</th><th>Importe</th></tr></thead>";
 
 
 		for (var i in this._personas){
@@ -355,14 +355,14 @@ class DGT{
 					
 				}
 				if (contador != 0){
-				cad+="<tr><td>"+this._personas[i].nif+"</td><td>"+this._personas[i].nombre+"</td><td>"+this._personas[i].apellidos+"</td><td>"+this._personas[i].rango+"</td><td>"+contador+"</td><td>"+acumulado+" &euro;</td></tr>";
+				cad+="<tbody><tr><td>"+this._personas[i].nif+"</td><td>"+this._personas[i].nombre+"</td><td>"+this._personas[i].apellidos+"</td><td>"+this._personas[i].rango+"</td><td>"+contador+"</td><td>"+acumulado+" &euro;</td></tr></tbody>";
 				}
 			}
 		acumulado=0;
 		contador=0;
 		}
 		
-		cad+="</table>";
+		cad+="</table></div>";
 
 		return cad;
 	}
@@ -374,8 +374,8 @@ class DGT{
 		var acumulador=0;
 
 		cad+= "<h3>Saldo de multas sin pagar por conductor</h3>";
-		cad+= "<table border=1>";
-		cad+= "<tr><th>NIF</th><th>Saldo Pendiente</th></tr>";
+		cad+= "<div class=\"container\"><table class=\"table table-striped\">";
+		cad+= "<thead><tr><th>NIF</th><th>Saldo Pendiente</th></tr></thead>";
 
 			for (var i in this._personas) {
 				if(this._personas[i] instanceof Conductor){
@@ -394,13 +394,13 @@ class DGT{
 						}
 					}
 					if (acumulador != 0) {
-						cad+="<tr><td>"+this._personas[i].nif+"</td><td>"+acumulador+" &euro;</td></tr>";
+						cad+="<tbody><tr><td>"+this._personas[i].nif+"</td><td>"+acumulador+" &euro;</td></tr></tbody>";
 					}
 					acumulador=0;
 				}
 
 			}
-			cad+="</table>";
+			cad+="</table></div>";
 
 			return cad;
 	}
@@ -411,8 +411,8 @@ class DGT{
 		var acumulador=0;
 
 		cad+= "<h3>Puntos retirados por conductor</h3>";
-		cad+= "<table border=1>";
-		cad+= "<tr><th>NIF</th><th>Puntos retirados</th></tr>";
+		cad+= "<div class=\"container\"><table class=\"table table-striped\">";
+		cad+= "<thead><tr><th>NIF</th><th>Puntos retirados</th></tr></thead>";
 
 		for(var i in this._personas){
 			if (this._personas[i] instanceof Conductor) {
@@ -426,13 +426,13 @@ class DGT{
 					}
 				}
 				if (acumulador != 0) {
-					cad+="<tr><td>"+this._personas[i].nif+"</td><td>"+acumulador+"</td></tr>";
+					cad+="<tbody><tr><td>"+this._personas[i].nif+"</td><td>"+acumulador+"</td></tr></tbody>";
 			}
 			acumulador=0;
 		}
 		
 		}
-		cad+="</table>";
+		cad+="</table></div>";
 
 		return cad;
 	}
@@ -447,8 +447,8 @@ class DGT{
 		var totalMultas=0;
 
 		cad+= "<h3>Listado de multas por fecha</h3>";
-		cad+= "<table border=1>";
-		cad+= "<tr><th>ID</th><th>Fecha</th><th>Importe</th></tr>";
+		cad+= "<div class=\"container\"><table class=\"table table-striped\">";
+		cad+= "<thead><tr><th>ID</th><th>Fecha</th><th>Importe</th></tr></thead>";
 
 		for (var i in this._multas)
 					if (Date.parse(this._multas[i].fechaMulta) >= Date.parse(dtInicio) && Date.parse(this._multas[i].fechaMulta) <= Date.parse(dtFin)) {
@@ -456,8 +456,11 @@ class DGT{
 						fechaFecha=this._multas[i].fechaMulta;
 						importeFecha=this._multas[i].importeMulta;
 						totalMultas+=this._multas[i].importeMulta;
-						cad+="<tr><td>"+idFecha+"</td><td>"+fechaFecha.toLocaleDateString('es-ES')+"</td><td>"+importeFecha+"</td></tr>";
+						cad+="<tbody><tr><td>"+idFecha+"</td><td>"+fechaFecha.toLocaleDateString('es-ES')+"</td><td>"+importeFecha+"</td></tr></tbody>";
 					}
+			cad+="</table></div>";
+
+			return cad;
 				}
 
 	multaImprimir(imprimirMultaId){
